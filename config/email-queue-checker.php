@@ -1,23 +1,35 @@
 <?php
 
 return [
-    'model' => 'App\Email',
 
-    'values' => [
-        'system' => 'this_systems_unique_name', // TODO: change this!
-        'from_name' => 'Systems name', // TODO: change this!
-        'from_email' => 'emailchecker@thissystemsdomain.com' // TODO: change this!
+    /**
+     * Class path to the email model class
+     */
+    'model'   => 'App\Email',
+
+    /**
+     * Values for email
+     */
+    'values'  => [
+        // The systems name
+        'from_name'  => 'System name', // TODO: change this!
+
+        // Sending from email - identifies this system
+        'from_email' => 'system_name@emailchecker.adaptivemail.se', // TODO: change this!
+
+        // To which email the mail should be sent to
+        'to_email'   => 'email.works@emailchecker.adaptivemail.se',
     ],
 
     /**
      * The column mappings.
-     * What we call it => this systems local name for the column on the email class
+     * Identifier => the email models property
      */
     'columns' => [
-        'to_email' => 'to_email',
-        'from_name' => 'from_name',
+        'from_name'  => 'from_name',
         'from_email' => 'from_email',
-        'subject' => 'subject',
-        'body' => 'body',
-    ]
+        'to_email'   => 'to_email',
+        'subject'    => 'subject',
+        'body'       => 'body',
+    ],
 ];

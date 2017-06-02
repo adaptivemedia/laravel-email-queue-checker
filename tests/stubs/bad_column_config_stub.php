@@ -11,10 +11,5 @@ return [
     ],
 
     'columns' => [
-        'from_name'  => 'from_name',
-        'from_email' => 'from_email',
-        'to_email'   => 'to_email',
-        'subject'    => 'subject',
-        'body'       => 'body',
     ]
 ];

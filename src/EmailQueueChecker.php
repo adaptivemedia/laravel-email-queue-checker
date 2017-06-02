@@ -2,10 +2,9 @@
 
 namespace Adaptivemedia\EmailQueueChecker;
 
-use Adaptivemedia\EmailQueueChecker\Exceptions\BadKeyInConfigException;
+use Adaptivemedia\EmailQueueChecker\Exceptions\BadColumnInConfigException;
 use Adaptivemedia\EmailQueueChecker\Exceptions\BadModelInConfigException;
 use Adaptivemedia\EmailQueueChecker\Exceptions\BadValueInConfigException;
-use Illuminate\Database\Eloquent\Model;
 
 class EmailQueueChecker
 {
@@ -29,7 +28,7 @@ class EmailQueueChecker
     }
 
     /**
-     * @return Model
+     * @return mixed
      */
     private function getModel()
     {
@@ -44,8 +43,8 @@ class EmailQueueChecker
         $fill = [
             $this->resolveKeyForColumn('from_name')  => $this->resolveValueForColumn('from_name'),
             $this->resolveKeyForColumn('from_email') => $this->resolveValueForColumn('from_email'),
-            $this->resolveKeyForColumn('to_email')   => 'email.works@emailchecker.adaptivemail.se',
-            $this->resolveKeyForColumn('subject')    => 'System: ' . $this->resolveValueForColumn('system'),
+            $this->resolveKeyForColumn('to_email')   => $this->resolveValueForColumn('to_email'),
+            $this->resolveKeyForColumn('subject')    => 'Emailchecker for ' . $this->resolveValueForColumn('from_name'),
             $this->resolveKeyForColumn('body')       => $this->renderBody(),
         ];
 
@@ -56,6 +55,7 @@ class EmailQueueChecker
 
     /**
      * @return $this
+     * @throws BadModelInConfigException
      */
     private function resolveModel()
     {
@@ -72,13 +72,13 @@ class EmailQueueChecker
     /**
      * @param string $column
      * @return mixed
-     * @throws \Exception
+     * @throws BadColumnInConfigException
      */
     private function resolveKeyForColumn(string $column)
     {
         $value = config('email-queue-checker.columns.' . $column);
         if (! $value) {
-            throw new BadKeyInConfigException("No key found for column $column");
+            throw new BadColumnInConfigException("No key found for column $column");
         }
 
         return $value;
@@ -87,7 +87,7 @@ class EmailQueueChecker
     /**
      * @param string $column
      * @return mixed
-     * @throws \Exception
+     * @throws BadValueInConfigException
      */
     private function resolveValueForColumn(string $column)
     {

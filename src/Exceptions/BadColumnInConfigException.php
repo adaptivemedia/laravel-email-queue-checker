@@ -2,6 +2,6 @@
 
 namespace Adaptivemedia\EmailQueueChecker\Exceptions;
 
-class BadKeyInConfigException extends \Exception
+class BadColumnInConfigException extends \Exception
 {
 }

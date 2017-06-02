@@ -16,6 +16,9 @@ class EmailQueueCheckerTest extends TestCase
         $model = $service->addEmailToQueue();
 
         $this->assertEquals('test_system_name', $model->attributes['from_name']);
+        $this->assertEquals('system_name@emailchecker.adaptivemail.se', $model->attributes['from_email']);
+        $this->assertEquals('info@domain.com', $model->attributes['to_email']);
+        $this->assertEquals('Emailchecker for test_system_name', $model->attributes['subject']);
         $this->assertEquals('OK', $model->attributes['body']);
     }
 
@@ -34,12 +37,12 @@ class EmailQueueCheckerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Adaptivemedia\EmailQueueChecker\Exceptions\BadKeyInConfigException
+     * @expectedException \Adaptivemedia\EmailQueueChecker\Exceptions\BadColumnInConfigException
      */
     public function exception_is_thrown_when_invalid_key_is_supplied()
     {
         // Load config stub into config
-        $this->loadConfigStub('bad_key_config_stub.php');
+        $this->loadConfigStub('bad_column_config_stub.php');
 
         $service = new EmailQueueChecker;
         $service->addEmailToQueue();
