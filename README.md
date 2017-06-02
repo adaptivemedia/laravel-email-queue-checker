@@ -2,10 +2,9 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/adaptivemedia/email-queue-checker.svg?style=flat-square)](https://packagist.org/packages/adaptivemedia/email-queue-checker)
 [![Build Status](https://img.shields.io/travis/adaptivemedia/email-queue-checker/master.svg?style=flat-square)](https://travis-ci.org/adaptivemedia/email-queue-checker)
-[![Quality Score](https://img.shields.io/scrutinizer/g/adaptivemedia/email-queue-checker.svg?style=flat-square)](https://scrutinizer-ci.com/g/adaptivemedia/email-queue-checker)
 [![Total Downloads](https://img.shields.io/packagist/dt/adaptivemedia/email-queue-checker.svg?style=flat-square)](https://packagist.org/packages/adaptivemedia/email-queue-checker)
 
-This package will add functionality to add an email to the projects email queue to be able to verify that the queue is running correctly.
+In many projects there's an email queue that is responsible for sending emails. To make sure that the email queue is running, this package will add an email to the queue so it will be sent to a central system that receives the email and confirms that the queue is up and running.
 
 ## Installation
 
@@ -16,9 +15,36 @@ composer require adaptivemedia/email-queue-checker
 ```
 
 ## Usage
-- Add the service provider
-- Add a scheduling event to the command (included)
-- Setup endpoint to parse incoming mail in Mandrill
+
+Add the service provider
+```php
+// config/app.php
+
+'providers' => [
+    // ...
+    Adaptivemedia\EmailQueueChecker\EmailQueueCheckerServiceProvider::class,
+];
+``` 
+Add console command to Kernel
+```php
+// app/Console/Kernel.php
+
+protected $commands = [
+    \Adaptivemedia\EmailQueueChecker\AddEmailQueueCheckerEmailCommand::class
+];
+``` 
+
+Add a scheduling event to the command (included)
+```php
+// app/Console/Kernel.php
+
+protected function schedule(Schedule $schedule)
+{
+    $schedule->command('email-queue-checker:add')->hourly();
+}
+``` 
+
+Setup endpoint to parse incoming mail in Mandrill
 
 ## Changelog
 
