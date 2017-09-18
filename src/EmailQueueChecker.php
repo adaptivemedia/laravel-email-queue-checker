@@ -20,11 +20,7 @@ class EmailQueueChecker
      */
     public function addEmailToQueue()
     {
-        $model = $this->resolveModel()->fillModel()->getModel();
-
-        $model->save();
-
-        return $model;
+        return $this->resolveModel()->fillModel()->saveModel()->getModel();
     }
 
     /**
@@ -36,11 +32,11 @@ class EmailQueueChecker
     }
 
     /**
-     * @return $this
+     * @return EmailQueueChecker
      */
-    private function fillModel()
+    private function fillModel(): EmailQueueChecker
     {
-        $fill = [
+        $data = [
             $this->resolveKeyForColumn('from_name')  => $this->resolveValueForColumn('from_name'),
             $this->resolveKeyForColumn('from_email') => $this->resolveValueForColumn('from_email'),
             $this->resolveKeyForColumn('to_email')   => $this->resolveValueForColumn('to_email'),
@@ -48,16 +44,26 @@ class EmailQueueChecker
             $this->resolveKeyForColumn('body')       => $this->renderBody(),
         ];
 
-        $this->model->forceFill($fill);
+        $this->model->forceFill($data);
 
         return $this;
     }
 
     /**
-     * @return $this
+     * @return EmailQueueChecker
+     */
+    private function saveModel(): EmailQueueChecker
+    {
+        $this->model->save();
+
+        return $this;
+    }
+
+    /**
+     * @return EmailQueueChecker
      * @throws BadModelInConfigException
      */
-    private function resolveModel()
+    private function resolveModel(): EmailQueueChecker
     {
         $modelClass = config('email-queue-checker.model');
         if (! class_exists($modelClass)) {
@@ -71,10 +77,10 @@ class EmailQueueChecker
 
     /**
      * @param string $column
-     * @return mixed
+     * @return string
      * @throws BadColumnInConfigException
      */
-    private function resolveKeyForColumn(string $column)
+    private function resolveKeyForColumn(string $column): string
     {
         $value = config('email-queue-checker.columns.' . $column);
         if (! $value) {
@@ -86,10 +92,10 @@ class EmailQueueChecker
 
     /**
      * @param string $column
-     * @return mixed
+     * @return string
      * @throws BadValueInConfigException
      */
-    private function resolveValueForColumn(string $column)
+    private function resolveValueForColumn(string $column): string
     {
         $value = config('email-queue-checker.values.' . $column);
         if (! $value) {

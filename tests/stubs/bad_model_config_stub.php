@@ -3,7 +3,8 @@
 
 return [
     'model' => 'Adaptivemedia\EmailQueueChecker\ClassNotFound',
-
+    'fill_method' => 'forceFill',
+    'save_method' => 'save',
     'values' => [
         'to_email' => 'info@domain.com',
         'from_name' => 'test_system_name',

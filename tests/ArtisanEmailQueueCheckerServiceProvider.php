@@ -13,7 +13,7 @@ class ArtisanEmailQueueCheckerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('email-queue-checker:add', AddEmailQueueCheckerEmailCommand::class);
-        $this->commands(['email-queue-checker:add']);
+        $this->app->bind('email-queue-checker:add-email', AddEmailQueueCheckerEmailCommand::class);
+        $this->commands(['email-queue-checker:add-email']);
     }
 }

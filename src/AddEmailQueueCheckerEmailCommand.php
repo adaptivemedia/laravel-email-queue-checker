@@ -11,14 +11,14 @@ class AddEmailQueueCheckerEmailCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'email-queue-checker:add';
+    protected $signature = 'email-queue-checker:add-email';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Adds an email to the queue to be able to test that the queue works';
+    protected $description = 'Adds an email to the queue';
 
     /**
      * Create a new command instance.
@@ -41,6 +41,6 @@ class AddEmailQueueCheckerEmailCommand extends Command
 
         $service->addEmailToQueue();
         
-        $this->info('Email created');
+        $this->info('Email added to queue');
     }
 }

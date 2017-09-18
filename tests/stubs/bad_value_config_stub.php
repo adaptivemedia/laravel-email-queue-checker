@@ -3,7 +3,8 @@
 
 return [
     'model' => 'Adaptivemedia\EmailQueueChecker\Test\EmailModelFake',
-
+    'fill_method' => 'forceFill',
+    'save_method' => 'save',
     'values' => [
     ],
 
