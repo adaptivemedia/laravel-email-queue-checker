@@ -14,8 +14,6 @@ You can install the package via composer:
 composer require adaptivemedia/laravel-email-queue-checker
 ```
 
-## Usage 
-
 #### Add the service provider
 ```php
 // config/app.php
