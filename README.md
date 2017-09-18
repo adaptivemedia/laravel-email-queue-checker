@@ -4,7 +4,7 @@
 [![Build Status](https://img.shields.io/travis/adaptivemedia/laravel-email-queue-checker/master.svg?style=flat-square)](https://travis-ci.org/adaptivemedia/laravel-email-queue-checker)
 [![Total Downloads](https://img.shields.io/packagist/dt/adaptivemedia/laravel-email-queue-checker.svg?style=flat-square)](https://packagist.org/packages/adaptivemedia/laravel-email-queue-checker)
 
-In many projects there's an email queue that is responsible for sending emails. To make sure that the email queue is running, this package will add an email to the queue so it will be sent to a central system that receives the email and confirms that the queue is up and running. This package is optimized for Laravel, but can work with any PHP project.
+In many projects there's an email queue that is responsible for sending emails. To make sure that the email queue is running, this package will add an email to the queue so it will be sent to a central system that receives the email and confirms that the queue is up and running. This package requires Laravel, at least version 5.2.
 
 ## Installation
 
