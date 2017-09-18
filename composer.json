@@ -1,11 +1,11 @@
 {
-    "name": "adaptivemedia/email-queue-checker",
+    "name": "adaptivemedia/laravel-email-queue-checker",
     "description": "Will check that your applications email queue is working properly",
     "keywords": [
         "adaptive media",
         "email-queue-checker"
     ],
-    "homepage": "https://github.com/adaptivemedia/email-queue-checker",
+    "homepage": "https://github.com/adaptivemedia/laravel-email-queue-checker",
     "license": "MIT",
     "authors": [
         {
