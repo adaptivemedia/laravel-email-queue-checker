@@ -47,6 +47,11 @@ protected function schedule(Schedule $schedule)
 }
 ``` 
 
+#### Publish the config and edit it
+```php
+php artisan vendor:publish --provider="Adaptivemedia\EmailQueueChecker\EmailQueueCheckerServiceProvider" --tag="config"
+``` 
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
