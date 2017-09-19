@@ -18,7 +18,7 @@ return [
         'from_email' => 'system_name@emailchecker.adaptivemail.se', // TODO: change this!
 
         // To which email the mail should be sent to (as setup in Mandrill)
-        'to_email' => 'email.works@emailchecker.adaptivemail.se',
+        'to_email' => 'status@emailchecker.adaptivemail.se',
     ],
 
     /**
