@@ -67,7 +67,7 @@ class EmailQueueChecker
     {
         $modelClass = config('email-queue-checker.model');
         if (! class_exists($modelClass)) {
-            throw new BadModelInConfigException('Model class given (' . $modelClass . ') was not found');
+            throw new BadModelInConfigException("Model class given ({$modelClass}) not found");
         }
 
         $this->model = new $modelClass;
@@ -84,7 +84,7 @@ class EmailQueueChecker
     {
         $value = config('email-queue-checker.columns.' . $column);
         if (! $value) {
-            throw new BadColumnInConfigException("No key found for column $column");
+            throw new BadColumnInConfigException("No key found for column {$column}");
         }
 
         return $value;
@@ -99,7 +99,7 @@ class EmailQueueChecker
     {
         $value = config('email-queue-checker.values.' . $column);
         if (! $value) {
-            throw new BadValueInConfigException("No value found for column $column");
+            throw new BadValueInConfigException("No value found for column {$column}");
         }
 
         return $value;
