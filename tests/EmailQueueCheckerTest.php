@@ -24,10 +24,11 @@ class EmailQueueCheckerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Adaptivemedia\EmailQueueChecker\Exceptions\BadModelInConfigException
      */
     public function exception_is_thrown_when_invalid_model_class_is_supplied()
     {
+        $this->expectException(\Adaptivemedia\EmailQueueChecker\Exceptions\BadModelInConfigException::class);
+
         // Load config stub into config
         $this->loadConfigStub('bad_model_config_stub.php');
 
@@ -37,10 +38,11 @@ class EmailQueueCheckerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Adaptivemedia\EmailQueueChecker\Exceptions\BadColumnInConfigException
      */
     public function exception_is_thrown_when_invalid_key_is_supplied()
     {
+        $this->expectException(\Adaptivemedia\EmailQueueChecker\Exceptions\BadColumnInConfigException::class);
+
         // Load config stub into config
         $this->loadConfigStub('bad_column_config_stub.php');
 
@@ -50,10 +52,11 @@ class EmailQueueCheckerTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Adaptivemedia\EmailQueueChecker\Exceptions\BadValueInConfigException
      */
     public function exception_is_thrown_when_invalid_value_is_supplied()
     {
+        $this->expectException(\Adaptivemedia\EmailQueueChecker\Exceptions\BadValueInConfigException::class);
+
         // Load config stub into config
         $this->loadConfigStub('bad_value_config_stub.php');
 

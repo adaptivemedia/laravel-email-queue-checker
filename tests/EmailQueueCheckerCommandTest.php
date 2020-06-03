@@ -28,6 +28,6 @@ class EmailQueueCheckerCommandTest extends TestCase
         Artisan::call('email-queue-checker:add-email');
 
         $output = Artisan::output();
-        $this->assertContains((string)'Email added to queue', $output);
+        $this->assertStringContainsString('Email added to queue', $output);
     }
 }
